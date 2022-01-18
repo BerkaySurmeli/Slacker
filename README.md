@@ -9,7 +9,7 @@
 * Time limit can be added to the activities. It will warn the user when the time is up
 
 ## Wireframes
-!(https://myoctocat.com/assets/images/base-octocat.svg)
+!(/assets/wireframes/wireframe.png)
 
 
 ## Project setup
