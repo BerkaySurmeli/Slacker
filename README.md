@@ -9,7 +9,7 @@
 * Time limit can be added to the activities. It will warn the user when the time is up
 
 ## Wireframes
-!(/assets/wireframes/wireframe.png)
+!(src/assets/wireframes/wireframe.png)
 
 
 ## Project setup
