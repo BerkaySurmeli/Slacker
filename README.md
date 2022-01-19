@@ -8,6 +8,9 @@
 * Statistics can be provided daily, weekly or montly
 * Time limit can be added to the activities. It will warn the user when the time is up
 
+#### This app is currently being developed in Vue as a Web app
+#### It will eventually be a Mobile app (React native)
+
 ## Wireframes
 ![](/src/assets/wireframes/wireframe.png)
 
