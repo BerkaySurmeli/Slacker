@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <h1 v-if="currentActivity">Current Activity: {{ currentActivity.name }}</h1>
-    <Timer/>
     <Activity v-for= "activity in activities"
     :key = "activity.id"
     :activityName = "activity.name"
@@ -12,7 +10,6 @@
 <script>
 // @ is an alias to /src
 import Activity from '@/components/Activity.vue'
-import Timer from '@/components/Timer.vue'
 
 export default {
   name: 'Home',
@@ -21,32 +18,33 @@ export default {
   data () {
     return {
       activities: [
-        { id: 1, name: 'Watching Tv' },
-        { id: 2, name: 'Playing Videogame' },
-        { id: 3, name: 'Working' },
-        { id: 4, name: 'Doing laundry' },
-        { id: 5, name: 'Washing Dishes' }
+        { id: 1, name: 'Watching Netflix', score: 500 },
+        { id: 2, name: 'Playing Videogame', score: 250 },
+        { id: 3, name: 'Napping', score: 150 },
+        { id: 4, name: 'Staring at the ceiling for no reason', score: 400 }
       ],
       currentActivity: null,
       currentDuration: 0
     }
   },
   components: {
-    Activity,
-    Timer
+    Activity
   },
   mounted () {
-    this.emitter.on('start-timer', (id) => {
+    /*
+    * This mounted method is called from an activity instance
+    * start-activity event is called with the id of the activity
+    * to keep track of the current activity
+    *
+    * If there is already an activity currentlt running
+    * this method stops that
+    */
+    this.emitter.on('start-activity', (id) => {
       if (this.currentActivity) {
         const stopActivityEvent = 'stop-activity-' + this.currentActivity.id
-        this.emitter.emit('get-duration')
-        this.emitter.emit(stopActivityEvent, this.currentDuration)
+        this.emitter.emit(stopActivityEvent)
       }
       this.currentActivity = this.activities.find(item => item.id === id)
-      this.emitter.emit('start-chrono')
-    })
-    this.emitter.on('set-duration', (duration) => {
-      this.currentDuration = duration
     })
   }
 }
